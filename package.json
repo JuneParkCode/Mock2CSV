@@ -1,0 +1,49 @@
+{
+  "name": "mock2csv",
+  "version": "0.0.1",
+  "description": "Mock data to CSV",
+
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+
+  "scripts": {
+    "test": "test",
+    "clean": "rm -rf src/*.js src/*.d.ts ./*.csv dist",
+    "build": "rm -fr dist/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && ./fixup.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuneParkCode/Mock2CSV.git"
+  },
+  "type": "module",
+  "keywords": [
+    "fake",
+    "faker",
+    "csv",
+    "mock"
+  ],
+  "author": "Photogrammer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuneParkCode/Mock2CSV/issues"
+  },
+  "homepage": "https://github.com/JuneParkCode/mocker#readme",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.12.11",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "bcryptjs": "^2.4.3",
+    "moment-timezone": "^0.5.45"
+  }
+  
+}

@@ -1,0 +1,31 @@
+# Logs
+logs
+*.log
+
+# output files
+*.csv
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Build output
+dist/
+build/
+out/
+
+# Environment variables
+.env
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-*
+
+# Compiled files
+*.min.js
+*.min.css
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
