@@ -1,6 +1,6 @@
 {
   "name": "mock2csv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Mock data to CSV",
 
   "main": "dist/cjs/index.js",
@@ -34,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/JuneParkCode/Mock2CSV/issues"
   },
-  "homepage": "https://github.com/JuneParkCode/mocker#readme",
+  "homepage": "https://github.com/JuneParkCode/Mock2CSV#readme",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.12.11",
