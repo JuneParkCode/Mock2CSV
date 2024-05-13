@@ -1,6 +1,6 @@
 {
   "name": "mock2csv",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Mock data to CSV",
 
   "main": "dist/cjs/index.js",
