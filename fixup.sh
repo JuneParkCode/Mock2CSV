@@ -1,3 +1,5 @@
+cp dist/mjs/index.d.ts dist 
+
 cat >dist/cjs/package.json <<!EOF
 {
     "type": "commonjs"
