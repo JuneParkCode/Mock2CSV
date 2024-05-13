@@ -1,8 +1,7 @@
 {
   "name": "mock2csv",
-  "version": "0.0.6",
-  "description": "Mock data to CSV",
-
+  "version": "0.0.7",
+  "description": "Create Mock data and save it as CSV file",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
   "types": "dist/index.d.ts",
@@ -12,9 +11,8 @@
       "require": "./dist/cjs/index.js"
     }
   },
-
   "scripts": {
-    "test": "test",
+    "test": "vitest",
     "clean": "rm -rf src/*.js src/*.d.ts ./*.csv dist",
     "build": "rm -fr dist/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && ./fixup.sh"
   },
@@ -27,7 +25,11 @@
     "fake",
     "faker",
     "csv",
-    "mock"
+    "mock",
+    "mockdata",
+    "mockcsv",
+    "dummy",
+    "dummydata"
   ],
   "author": "Photogrammer",
   "license": "MIT",
@@ -38,12 +40,12 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.12.11",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
     "bcryptjs": "^2.4.3",
     "moment-timezone": "^0.5.45"
   }
-  
 }
