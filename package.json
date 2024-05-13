@@ -1,6 +1,6 @@
 {
   "name": "mock2csv",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Mock data to CSV",
 
   "main": "dist/cjs/index.js",
@@ -30,7 +30,7 @@
     "mock"
   ],
   "author": "Photogrammer",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/JuneParkCode/Mock2CSV/issues"
   },

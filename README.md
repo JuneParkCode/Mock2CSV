@@ -4,14 +4,13 @@
 
 ## NOTE
 
-- USE Typescript.
+- Recommend to use Typescript.
+- Can use bcryptjs, faker-js, moment-timezone by `import { bcrypt, faker, moment } from "mock2csv";`
 
 ## Usage
 
 ```typescript
-import moment from "moment-timezone";
-import bcrypt from "bcryptjs";
-import { faker } from "@faker-js/faker";
+import { bcrypt, Schema, faker, moment, Mock2CSV } from "mock2csv";
 
 let user_id = 1;
 const pw = bcrypt.hashSync("password123", 10); // encrypt password (encryption is time-consuming)
