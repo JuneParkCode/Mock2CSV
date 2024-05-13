@@ -2,7 +2,7 @@ import fs, { WriteStream } from "fs";
 import { Schema } from "./schema";
 
 /**
- * CSVOptions
+ * options
  * @description Options for csv file
  *
  * @param header: boolean - whether to include header to csv file (default: true)
@@ -19,51 +19,57 @@ import { Schema } from "./schema";
  * Set options like below:
  * {header: true, delimiter: ',', quote: '\'', escape: '\'', newLine: '\n'}
  */
-export interface CSVOptions {
+export interface Options {
   header?: boolean;
   delimiter?: string;
   quote?: string;
   escape?: string;
   newLine?: string;
+  logging?: boolean;
 }
 
-class DefaultOptions implements CSVOptions {
+class DefaultOptions implements Options {
   header?: boolean = true;
   delimiter?: string = ",";
   quote?: string = '"';
   escape?: string = '"';
   newLine?: string = "\n";
+  logging?: boolean = true;
 }
 
 /**
  * Mock2CSV
  * @description Generate csv file with given schema and options.
  *
- * @param csvOptions: CSVOptions - options for csv file
+ * @param options: options - options for csv file
  *
  * @example
  * const m2c = new Mock2CSV();
  * m2c.generate(User, 1000, 'output.csv');
  */
 export class Mock2CSV {
-  private csvOptions: CSVOptions;
-  private logging: boolean;
+  private options: Options;
 
   /**
    * Create Mock2CSV instance
    *
-   * @param logging boolean - whether to log progress (default: true)
-   * @param csvOptions {@link CSVOptions} - options for csv file
+   * @param options {@link Options} - options for csv file
+   * @default
+   * {
+   *    header: true
+   *    delimiter: ','
+   *    quote: '"'
+   *    escape: '"'
+   *    newLine: '\n'
+   *    logging: true
+   * }
    * @example
-   * const m2c = new Mock2CSV(false);
-   *
-   * const m2c = new Mock2CSV(true, {header: false});
-   *
-   * const m2c = new Mock2CSV(true, {header: false, delimiter: ';', quote: '"', escape: '"', newLine: '\n'});
-   */
-  constructor(logging: boolean = true, csvOptions?: CSVOptions) {
-    this.csvOptions = { ...new DefaultOptions(), ...csvOptions };
-    this.logging = logging;
+   * const m2c = new Mock2CSV();
+   * const m2c = new Mock2CSV({header: false, delimiter: ';', quote: "'", escape: "'", newLine: '\n'});
+   * const m2c = new Mock2CSV({header: false, logging: false});
+   **/
+  constructor(options: Options | Object) {
+    this.options = { ...new DefaultOptions(), ...options };
   }
 
   /**
@@ -85,7 +91,7 @@ export class Mock2CSV {
     const startTime = new Date().getTime();
 
     this.log(`Generating ${recordNum} records...`);
-    if (this.csvOptions.header) {
+    if (this.options.header) {
       this.writeLine(this.getHeaderLine(schema), stream);
     }
     for (let i = 0; i < recordNum; i++) {
@@ -123,7 +129,7 @@ export class Mock2CSV {
     stream: WriteStream
   ) {
     this.log(`Generating ${recordNum} records...`);
-    if (this.csvOptions.header) {
+    if (this.options.header) {
       this.writeLine(this.getHeaderLine(schema), stream);
     }
     for (let i = 0; i < recordNum; i++) {
@@ -138,7 +144,7 @@ export class Mock2CSV {
   // private methods
 
   private writeProgress(current: number = 0, recordNum: number) {
-    if (!this.logging) return;
+    if (!this.options.logging) return;
     const progress = (current / recordNum) * 100;
     process.stdout.clearLine(0);
     process.stdout.cursorTo(0);
@@ -152,10 +158,10 @@ export class Mock2CSV {
   private getLineString(values: string[]): string {
     let line: string = "";
     values.forEach((value) => {
-      line += `${this.csvOptions.quote}${value}${this.csvOptions.quote}${this.csvOptions.delimiter}`;
+      line += `${this.options.quote}${value}${this.options.quote}${this.options.delimiter}`;
     });
     line = line.slice(0, -1);
-    line += this.csvOptions.newLine;
+    line += this.options.newLine;
     return line;
   }
 
@@ -194,6 +200,6 @@ export class Mock2CSV {
   }
 
   private log(message: string) {
-    if (this.logging) console.log(message);
+    if (this.options.logging) console.log(message);
   }
 }

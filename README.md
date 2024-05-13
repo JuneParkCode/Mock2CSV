@@ -10,7 +10,7 @@
 ## Usage
 
 ```typescript
-import { bcrypt, Schema, faker, moment, Mock2CSV } from "mock2csv";
+import { bcrypt, faker, moment, Mock2CSV, Schema } from "mock2csv";
 
 let user_id = 1;
 const pw = bcrypt.hashSync("password123", 10); // encrypt password (encryption is time-consuming)
@@ -25,7 +25,10 @@ const User: Schema = {
     moment().tz("Asia/Seoul").format("YYYY-MM-DDTHH:mm:ss.SSSSSSZ"),
 };
 
+// can be configured..
 const m2c = new Mock2CSV();
+//    const m2c = new Mock2CSV({header: false, delimiter: ';', quote: "'", escape: "'", newLine: '\n'});
+//    const m2c = new Mock2CSV({header: false, logging: false});
 
 m2c.generate(User, 1e3, "user.csv");
 ```
